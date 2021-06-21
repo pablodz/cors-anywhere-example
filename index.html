@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <p id="demo"></p>
+
+    <script>
+
+        var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
+
+        function doCORSRequest(options, printResult) {
+            var x = new XMLHttpRequest();
+            x.open(options.method, cors_api_url + options.url);
+            x.onload = x.onerror = function () {
+                printResult(
+                    options.method + ' ' + options.url + '\n' +
+                    x.status + ' ' + x.statusText + '\n\n' +
+                    (x.responseText || '')
+                );
+            };
+            if (/^POST/i.test(options.method)) {
+                x.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            }
+            x.send(options.data);
+        }
+
+
+        console.log(doCORSRequest({
+            method: this.id === 'post' ? 'POST' : 'GET',
+            url: 'https://www.gob.pe/institucion/pcm/campa%C3%B1as/3451-campana-nacional-de-vacunacion-contra-la-covid-19',
+            // data: dataField.value
+        }, function printResult(result) {
+            console.log( result);
+        }));
+
+        document.getElementById("demo").innerHTML = "Hello JavaScript!";
+    </script>
+
+</body>
+
+</html>
