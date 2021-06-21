@@ -3,9 +3,11 @@
 
 <body>
 
-    <h1 id="URL"></h1>
-    <H3>Response:</H3>
-    <p id='RESPONSE'></p>
+    <h1>METHOD: GET</h1>
+    <textarea id="URL" style="border: none;width:100%;height:100%;background-color:lightgrey;"></textarea>
+    <h3>Response:</h3>
+
+    <textarea id="RESPONSE" style="border: none;width:100%;height:500px;background-color:lightgrey;"></textarea>
 
     <script>
         var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
@@ -34,12 +36,11 @@
             // data: dataField.value
         }, function printResult(result) {
             console.log(result);
-            document.getElementById("RESPONSE").innerHTML = result;
+            var plainText = result.toString();
+            document.getElementById("RESPONSE").innerHTML = plainText;
         }));
 
         document.getElementById("URL").innerHTML = "[GET]URL=" + MYURL;
-
-        
     </script>
 
 </body>
